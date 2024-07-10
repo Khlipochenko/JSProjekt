@@ -123,42 +123,30 @@ function zeigtFeld(arrMitWählen) {
 function pruftSieg(arrMitWählen) {
  
     if(arrMitWählen[0]==arrMitWählen[1] && arrMitWählen[1]==arrMitWählen[2]&& arrMitWählen[0]!=' '){
-         console.log(`${arrMitWählen[0]} hat gewohnen!`);
-            return true;}
+        
+            return [arrMitWählen[0], true];}// git  arr mit zeichen und true züruck
     else if(arrMitWählen[0]==arrMitWählen[3] && arrMitWählen[3]==arrMitWählen[6]&& arrMitWählen[0]!=' '){
-        console.log(`${arrMitWählen[0]} hat gewohnen!`);
-        return true;
-    }
+        return [arrMitWählen[0], true];}
+    
     else if(arrMitWählen[1]==arrMitWählen[4] && arrMitWählen[1]==arrMitWählen[7]&& arrMitWählen[1]!=' '){
-        console.log(`${arrMitWählen[1]} hat gewohnen!`);
-        return true;
-    }
+        return [arrMitWählen[1], true];}
 
 
     else if(arrMitWählen[2]==arrMitWählen[5] && arrMitWählen[2]==arrMitWählen[8]&& arrMitWählen[2]!=' '){
-        console.log(`${arrMitWählen[2]} hat gewohnen!`);
-        return true;
-    }
+        return [arrMitWählen[2], true];}
+    
     else if(arrMitWählen[3]==arrMitWählen[4] && arrMitWählen[4]==arrMitWählen[5]&& arrMitWählen[3]!=' '){
-        console.log(`${arrMitWählen[3]} hat gewohnen!`);
-        return true;
-    }
+        return [arrMitWählen[3], true];}
     else if(arrMitWählen[6]==arrMitWählen[7] && arrMitWählen[7]==arrMitWählen[8]&& arrMitWählen[6]!=' '){
-        console.log(`${arrMitWählen[6]} hat gewohnen!`);
-        return true;
-    }
+        return [arrMitWählen[6], true];}
 
     
     else if(arrMitWählen[0]==arrMitWählen[4] && arrMitWählen[4]==arrMitWählen[8]&& arrMitWählen[0]!=' '){
-        console.log(`${arrMitWählen[0]} hat gewohnen!`);
-        return true;
-    }
+        return [arrMitWählen[0], true];}
     else if(arrMitWählen[2]==arrMitWählen[4] && arrMitWählen[4]==arrMitWählen[6]&& arrMitWählen[2]!=' '){
-        console.log(`${arrMitWählen[2]} hat gewohnen!`);
-        return true;
-    }
+        return [arrMitWählen[2], true];}
     else{
-        return false
+        return ['a', false];
     }
 
 }
@@ -182,44 +170,54 @@ console.log(`
 ----------------
   7  |  8  |  9`);
 
+let [zeichen, antwort]=pruftSieg(arrMitWählen)
+
 if(werErst){
-while (arrMitWählen.indexOf(' ')!=arrMitWählen.lastIndexOf(' ')) {
-    nimmtWahlvonMensch(arrMitWählen, zeichenVonMehsch)
-    if(pruftSieg(arrMitWählen)){
-        console.log
-        break
-   }
-   nimmtRandomWahl(arrMitWählen, zeichenVonComputer)
-    if(pruftSieg(arrMitWählen)){ 
-        break
-        }
-}}
+    while(arrMitWählen.includes(' ')){
+        [zeichen, antwort]=pruftSieg(arrMitWählen)
+        if(antwort){
+            console.log(zeichen==zeichenVonMehsch? `Glückwunsch! Du hast gewonnen.`: `Juhu, ich habe gewonnen.`);
+            break
+            }
+            else{
+                nimmtWahlvonMensch(arrMitWählen, zeichenVonMehsch)
+                
+                
+            }
+        [zeichen, antwort]=pruftSieg(arrMitWählen)
+        if(antwort){ 
+            console.log(zeichen==zeichenVonMehsch? `Glückwunsch! Du hast gewonnen.`: `Juhu, ich habe gewonnen.`);
+            break
+            }
+        else{
+            if(arrMitWählen.includes(' ')){
+            nimmtRandomWahl(arrMitWählen, zeichenVonComputer)   }    
+            }
+    }}
 else{
-    while (arrMitWählen.indexOf(' ')!=arrMitWählen.lastIndexOf(' ')) {
-        if(pruftSieg(arrMitWählen)){
+    while (arrMitWählen.includes(' ')) {
+        [zeichen, antwort]=pruftSieg(arrMitWählen)
+        if(antwort){
+            console.log(zeichen==zeichenVonMehsch? `Glückwunsch! Du hast gewonnen.`: `Juhu, ich habe gewonnen.`);
             break
             }
             else{
                 
                 nimmtRandomWahl(arrMitWählen, zeichenVonComputer)
             }
-        if(pruftSieg(arrMitWählen)){ 
-            break}
+        [zeichen, antwort]=pruftSieg(arrMitWählen)
+        if(antwort){ 
+            console.log(zeichen==zeichenVonMehsch? `Glückwunsch! Du hast gewonnen.`: `Juhu, ich habe gewonnen.`);
+            break
+            } 
         else{
-                    
+            if(arrMitWählen.includes(' ')){        
             nimmtWahlvonMensch(arrMitWählen, zeichenVonMehsch)}
     }
-}
+}}
 
-if(pruftSieg(arrMitWählen)==false){
-     if(werErst){
-         nimmtWahlvonMensch(arrMitWählen, zeichenVonMehsch) 
-     }
-    else{
-         nimmtRandomWahl(arrMitWählen, zeichenVonComputer) 
-     }
- }
+ if(pruftSieg(arrMitWählen)[1]==false){
+ console.log(' Es ist unentschiedent'); 
+  }
 
 
-
-console.log('Ende');
