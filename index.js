@@ -164,9 +164,6 @@ function pruftSieg(arrMitWählen) {
 }
 // Funktion , die schreibt wer gewonnen hat
 function schreibtWerGewonnenHat(zeichen,zeichenVonMehsch) {
-
-    console.log('schreibtWerGewonnenHat',zeichenVonMehsch);
-
     console.log(zeichen==zeichenVonMehsch? `\n\x1b[44m  Glückwunsch! Du hast gewonnen. \x1b[0m`:`\n\x1b[44m     Juhu, ich habe gewonnen.    \x1b[0m`);
 
 
@@ -185,7 +182,7 @@ zeigtRegeln();
 let frageWerfängtAn= question('\x1b[3mMöchtest du anfangen? (y/n) \x1b[23m:');
 const werErst=wähleWerFangtAn(frageWerfängtAn) // speichert wer hängt an
 const [zeichenVonMehsch, zeichenVonComputer]= wählenXO();// speichert zeichen von Menshc und Computer
-console.log('1.' , zeichenVonMehsch);
+
 
 console.log(` Merkt bitte welches Kästchen welche Nummer hat:
 
