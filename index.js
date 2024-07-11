@@ -114,7 +114,7 @@ function nimmtRandomWahl( arrMitWählen, zeichenVonComputer, zeichenVonMehsch){
             let gibtesFreiPlatz=(reihe.indexOf(' ')== reihe.lastIndexOf(' ')&& reihe.indexOf(' ')!=-1 )
            
             if(gibtesFreiPlatz){
-                if (reihe.indexOf(zeichenVonComputer)!= reihe.lastIndexOf(zeichenVonComputer)&& reihe.indexOf(zeichenVonComputer)!=-1){
+                if (reihe.indexOf(zeichenVonComputer)!= reihe.lastIndexOf(zeichenVonComputer)){
                     let ant=reihe.indexOf(' ')
                     
                     richtigWahl=reiheMitNUmmer[ant]+1
@@ -131,7 +131,7 @@ function nimmtRandomWahl( arrMitWählen, zeichenVonComputer, zeichenVonMehsch){
        
         let gibtesFreiPlatz=(reihe.indexOf(' ')== reihe.lastIndexOf(' ')&& reihe.indexOf(' ')!=-1 )
         if(gibtesFreiPlatz ){
-       if  (reihe.indexOf(zeichenVonMehsch)!= reihe.lastIndexOf(zeichenVonMehsch)&& reihe.indexOf(zeichenVonMehsch)!=-1){
+       if  (reihe.indexOf(zeichenVonMehsch)!= reihe.lastIndexOf(zeichenVonMehsch)){
         let ant=reihe.indexOf(' ')
     
         richtigWahl=reiheMitNUmmer[ant]+1;
@@ -139,11 +139,9 @@ function nimmtRandomWahl( arrMitWählen, zeichenVonComputer, zeichenVonMehsch){
         break
     
     }}}}
-// if (richtigWahl!=-1){wahl=richtigWahl}
 
 
      arrMitWählen[wahl-1]=zeichenVonComputer
-    //   console.clear()
     
      zeigtFeld(arrMitWählen, zeichenVonMehsch);//Zeigt das aktuelle Spielfeld.
      console.log(`
