@@ -118,6 +118,7 @@ function nimmtRandomWahl( arrMitWählen, zeichenVonComputer, zeichenVonMehsch){
                     let ant=reihe.indexOf(' ')
                     
                     richtigWahl=reiheMitNUmmer[ant]+1
+                    wahl=richtigWahl
                     break
             
             }
@@ -134,11 +135,11 @@ function nimmtRandomWahl( arrMitWählen, zeichenVonComputer, zeichenVonMehsch){
         let ant=reihe.indexOf(' ')
     
         richtigWahl=reiheMitNUmmer[ant]+1;
-        
+        wahl=richtigWahl
         break
     
     }}}}
-if (richtigWahl!=-1){wahl=richtigWahl}
+// if (richtigWahl!=-1){wahl=richtigWahl}
 
 
      arrMitWählen[wahl-1]=zeichenVonComputer
