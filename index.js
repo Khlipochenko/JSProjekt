@@ -1,6 +1,8 @@
 
 import { question } from 'readline-sync';
 console.clear();
+                                                                                                                         
+                                                                                                                                                                                                
 // Funktion , die Regeln zeigt.
 function zeigtRegeln(){
 console.log(`         
@@ -44,12 +46,12 @@ function fragen(antwort, var1='\x1b[38;5;82mOk. Fängst du an\x1b[0m',var2='\x1b
 function wählenXO() {
     let antwort= question('\x1b[3mMöchtest du X oder O sein? Schreib bitte "X" oder "0":\x1b[23m');
     antwort=antwort.trim().toUpperCase();
-     if (antwort=='o' || antwort=='O'){ // wenn man wählt Buchsctabe 'o' statt Ziffer 0
+     if (antwort=='O'){ // wenn man wählt Buchsctabe 'o' statt Ziffer 0
          antwort='0'
      };
        
     while(antwort!='X' && antwort!='0'){
-        antwort= question('\x1b[5m\x1b[38;2;255;0;0mSchreib bitte "X" oder "0" :\x1b[0m :');
+        antwort= question('\x1b[5m\x1b[38;2;255;0;0mSchreib bitte "X" oder "0" :\x1b[0m');
         antwort=antwort.trim().toUpperCase();
     }   
     console.log( antwort=='X'?'\x1b[38;5;82mOk. Du spielst für X\x1b[0m': '\x1b[38;5;82mOk. Du spielst für 0\x1b[0m');
