@@ -1,25 +1,27 @@
 
 import { question } from 'readline-sync';
+import chalk from 'chalk';
 console.clear();
                                                                                                                          
                                                                                                                                                                                                 
 // Funktion , die Regeln zeigt.
 function zeigtRegeln(){
 console.log(`         
-                                Hallo!
+                               ${chalk.cyanBright( ' Hallo!!! ')}
 
-                    Das ist das Spiel \x1b[5m\x1b[38;2;255;255;0m'Tic Tac Toe'\x1b[0m 
+                    Das ist das Spiel ${chalk.bold.green( '"Tic Tac Toe"')} 
 
-=============================== REGELN ===============================
+${chalk.bgYellowBright( '================================ REGELN ================================')} 
+
 Du spielst gegen den Computer.
 Am Anfang sollst du wählen, wer anfängt und ob du X oder 0 sein möchtest.
 Dann sollst du ein freies Feld zwischen 1 und 9 wählen. 
 
-        \x1b[5m\x1b[38;2;255;255;0m  1  |  2  |  3\x1b[0m
-        \x1b[5m\x1b[38;2;255;255;0m ---------------\x1b[0m    
-        \x1b[5m\x1b[38;2;255;255;0m  4  |  5  |  6\x1b[0m
-        \x1b[5m\x1b[38;2;255;255;0m ---------------\x1b[0m
-        \x1b[5m\x1b[38;2;255;255;0m  7  |  8  |  9\x1b[0m  
+        ${chalk.yellow( ' 1  |  2  |  3')}
+        ${chalk.yellow( '---------------')}   
+        ${chalk.yellow( ' 4  |  5  |  6')}
+        ${chalk.yellow( '---------------')}
+        ${chalk.yellow( ' 7  |  8  |  9')}
 
 Wenn du als Erster drei Zeichen in eine Zeile, Spalte oder Diagonale 
 setzen kannst, gewinnst du. 
@@ -30,11 +32,11 @@ setzen kannst, gewinnst du.
 // Funktion, die nimmt anwort auf Ja/Nein fragen
 // Wenn der Mensch 'y' gewählt hat, wird True zurückgegeben.
 
-function fragen(antwort, var1='\x1b[38;5;82mOk. Fängst du an\x1b[0m',var2='\x1b[38;2;135;206;235mOk. Fange ich an\x1b[0m'){
+function fragen(antwort, var1=chalk.green('Ok. Fängst du an'),var2=chalk.magenta('Ok. Fange ich an')){
     antwort=antwort.trim().toLowerCase();
        
     while(antwort!='y' && antwort!='n'){
-        antwort= question('\x1b[5m\x1b[38;2;255;0;0mSchreib bitte "y" oder "n" :\x1b[0m');
+        antwort= question(chalk.italic.red('Schreib bitte "y" oder "n": '));
         antwort=antwort.trim().toLowerCase();
     } 
     console.log( antwort=='y'? var1 : var2);
@@ -44,17 +46,17 @@ function fragen(antwort, var1='\x1b[38;5;82mOk. Fängst du an\x1b[0m',var2='\x1b
 // Funktion, die bestimmt, was der Spieler wird X oder O.
 
 function wählenXO() {
-    let antwort= question('\x1b[3mMöchtest du X oder O sein? Schreib bitte "X" oder "0":\x1b[23m');
+    let antwort= question(chalk.italic.yellow('Möchtest du X oder O sein? Schreib bitte "X" oder "0": '));
     antwort=antwort.trim().toUpperCase();
      if (antwort=='O'){ // wenn man wählt Buchsctabe 'o' statt Ziffer 0
          antwort='0'
      };
        
     while(antwort!='X' && antwort!='0'){
-        antwort= question('\x1b[5m\x1b[38;2;255;0;0mSchreib bitte "X" oder "0" :\x1b[0m');
+        antwort= question(chalk.italic.red('Schreib bitte "X" oder "0": '));
         antwort=antwort.trim().toUpperCase();
     }   
-    console.log( antwort=='X'?'\x1b[38;5;82mOk. Du spielst für X\x1b[0m': '\x1b[38;5;82mOk. Du spielst für 0\x1b[0m');
+    console.log( antwort=='X'?chalk.green('Ok. Du spielst für X'): chalk.green('Ok. Du spielst für 0'));
     let antwortComp= antwort=='X'?'0':'X'
     return [antwort, antwortComp];
     
@@ -66,12 +68,12 @@ function wählenXO() {
 function nimmtWahlvonMensch(arrMitWählen,  zeichenVonMehsch) {
     
     console.log(`
-       \x1b[38;5;82mJetzt du bist dran! \x1b[0m`);
+       ${chalk.green('Jetzt du bist dran!')}`);
     let wahl= Number(question(`
-\x1b[3mWält bitte frei Platz in Feld zwiesen 1 und 9: \x1b[23m`));
+${chalk.italic.yellow('Wält bitte frei Platz in Feld zwiesen 1 und 9: ')}`));
 
     while((wahl-1)<0 || (wahl-1)>9 || arrMitWählen[wahl-1]!=' '){
-         wahl= question('\x1b[5m\x1b[38;2;255;0;0mDas Feld ist nicht frei oder du hast keine Zahl zwischen 1 und 9 geschrieben. Versuch es noch einmal: \x1b[0m')
+         wahl= question(chalk.italic.red('Das Feld ist nicht frei oder du hast keine Zahl zwischen 1 und 9 geschrieben. Versuch es noch einmal: '))
     }
     arrMitWählen[wahl-1]=zeichenVonMehsch;
    
@@ -148,7 +150,7 @@ function nimmtRandomWahl( arrMitWählen, zeichenVonComputer, zeichenVonMehsch){
      zeigtFeld(arrMitWählen, zeichenVonMehsch);//Zeigt das aktuelle Spielfeld.
      console.log(`
      
-     \x1b[38;2;135;206;235m  Ich habe das Kästchen ${wahl} gewält.\x1b[0m
+ ${chalk.magenta( `Ich habe das Kästchen ${wahl} gewält.`)}
          `);
      
      
@@ -159,7 +161,7 @@ function nimmtRandomWahl( arrMitWählen, zeichenVonComputer, zeichenVonMehsch){
 function zeigtFeld(arrMitWählen, zeichenVonMehsch) {
     console.clear();
 
-   const arrMitFarbe= arrMitWählen.map(el=> el==zeichenVonMehsch?`\x1b[38;5;82m${el}\x1b[0m`:`\x1b[38;2;135;206;235m${el}\x1b[0m`)
+   const arrMitFarbe= arrMitWählen.map(el=> el==zeichenVonMehsch?`${chalk.green(el)}`:`${chalk.magenta(el)}`)
    let strMitWählen=' '.repeat(8);
    for(let i=0; i<arrMitWählen.length; i++){
     strMitWählen+='  '+arrMitFarbe[i]+'  ';
@@ -211,7 +213,7 @@ function pruftSieg(arrMitWählen) {
 }
 // Funktion , die schreibt wer gewonnen hat
 function schreibtWerGewonnenHat(zeichen,zeichenVonMehsch) {
-    console.log(zeichen==zeichenVonMehsch? `\n\x1b[44m  Glückwunsch! Du hast gewonnen. \x1b[0m`:`\n\x1b[44m     Juhu, ich habe gewonnen.    \x1b[0m`);
+    console.log(zeichen==zeichenVonMehsch? `\n${ chalk.bgGreen('  Glückwunsch! Du hast gewonnen. ')}`:`   ${chalk.bgMagenta(' Juhu, ich habe gewonnen. ')}`);
 } 
 
 
@@ -229,19 +231,19 @@ const arrMitWählen=[' ',' ',' ',
 
 zeigtRegeln();
 
-let frageWerfängtAn= question('\x1b[3mMöchtest du anfangen? (y/n) \x1b[23m:');
+let frageWerfängtAn= question(chalk.italic.yellow('Möchtest du anfangen? (y/n): '));
 const werErst=fragen(frageWerfängtAn) // speichert wer hängt an
 
 const [zeichenVonMehsch, zeichenVonComputer]= wählenXO();// speichert zeichen von Menshc und Computer
 
 let [zeichen, antwort]=pruftSieg(arrMitWählen)
-console.log(` Merkt bitte welches Kästchen welche Nummer hat:
+console.log(`Merkt bitte welches Kästchen welche Nummer hat:
 
-        \x1b[5m\x1b[38;2;255;255;0m  1  |  2  |  3\x1b[0m
-        \x1b[5m\x1b[38;2;255;255;0m ---------------\x1b[0m    
-        \x1b[5m\x1b[38;2;255;255;0m  4  |  5  |  6\x1b[0m
-        \x1b[5m\x1b[38;2;255;255;0m ---------------\x1b[0m
-        \x1b[5m\x1b[38;2;255;255;0m  7  |  8  |  9\x1b[0m  
+        ${chalk.yellow( ' 1  |  2  |  3')}
+        ${chalk.yellow( '---------------')}   
+        ${chalk.yellow( ' 4  |  5  |  6')}
+        ${chalk.yellow( '---------------')}
+        ${chalk.yellow( ' 7  |  8  |  9')}
 `);
 
 
@@ -299,7 +301,7 @@ else{
   }
 
 const frage= question(`
-Möchtest du noch einmal spielen? (y/n): `)
+${chalk.italic.yellow('Möchtest du noch einmal spielen? (y/n): ')}`)
 console.clear();
   weiterSpilen= fragen(frage, '\x1b[38;5;82mOk. Dann spielen wir noch einmal!!\x1b[0m','\x1b[38;2;135;206;235mSchade. Dann bis bald!\x1b[0m');
 }
