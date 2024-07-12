@@ -2,6 +2,7 @@
 import { question } from 'readline-sync';
 import chalk from 'chalk';
 console.clear();
+
                                                                                                                          
                                                                                                                                                                                                 
 // Funktion , die Regeln zeigt.
@@ -11,7 +12,7 @@ console.log(`
 
                     Das ist das Spiel ${chalk.bold.green( '"Tic Tac Toe"')} 
 
-${chalk.bgYellowBright( '================================ REGELN ================================')} 
+${chalk.bgBlackBright( '================================ REGELN =================================')} 
 
 Du spielst gegen den Computer.
 Am Anfang sollst du wählen, wer anfängt und ob du X oder 0 sein möchtest.
@@ -303,6 +304,12 @@ else{
 const frage= question(`
 ${chalk.italic.yellow('Möchtest du noch einmal spielen? (y/n): ')}`)
 console.clear();
-  weiterSpilen= fragen(frage, '\x1b[38;5;82mOk. Dann spielen wir noch einmal!!\x1b[0m','\x1b[38;2;135;206;235mSchade. Dann bis bald!\x1b[0m');
+  weiterSpilen= fragen(frage, chalk.blue('Ok. Dann spielen wir noch einmal!'),` ${chalk.green(`
+      _____  
+     /     \\ 
+    | () () |      Schade!
+    |   ^   |  Dann bis bald!!!
+    | _____ |
+     \\_____/
+       `)}`);
 }
-    
