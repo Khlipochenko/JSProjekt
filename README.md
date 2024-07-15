@@ -6,16 +6,19 @@ Dieses Projekt implementiert ein einfaches "Tic Tac Toe"-Spiel, bei dem ein mens
 ## Installation
 #### 1.    Voraussetzungen:
 
-* Node.js muss installiert sein.
-* Das Modul readline-sync muss installiert sein.
-#### 2.    Installation von readline-sync:
-
+* Node.js
+* readline-sync Paket
+* chalk Paket
+#### 2.   Installation
+* Installiere Node.js von der offiziellen Node.js Webseite.
+* Initialisiere ein neues npm-Projekt in deinem Projektverzeichnis (falls noch nicht geschehen):
 ```js
-npm install readline-sync
+npm init -y
 ```
-#### 3. Projektdatei erstellen:
-
-* Erstellen Sie eine Datei namens ticTacToe.js und fügen Sie den gesamten Code des Projekts in diese Datei ein.
+* Installiere die benötigten Pakete:
+```js
+npm install readline-sync chalk
+```
 
 ## Nutzung
 #### 1. Spiel starten:

@@ -2,9 +2,7 @@
 import { question } from 'readline-sync';
 import chalk from 'chalk';
 console.clear();
-
-                                                                                                                         
-                                                                                                                                                                                                
+                                                                                                                                                                                               
 // Funktion , die Regeln zeigt.
 function zeigtRegeln(){
 console.log(`         
@@ -42,7 +40,6 @@ function fragen(antwort, var1=chalk.green('Ok. Fängst du an'),var2=chalk.magent
     } 
     console.log( antwort=='y'? var1 : var2);
     return antwort=='y';// gib true zurück, wenn es richtig ist
-
 }
 // Funktion, die bestimmt, was der Spieler wird X oder O.
 
@@ -59,9 +56,7 @@ function wählenXO() {
     }   
     console.log( antwort=='X'?chalk.green('Ok. Du spielst für X'): chalk.green('Ok. Du spielst für 0'));
     let antwortComp= antwort=='X'?'0':'X'
-    return [antwort, antwortComp];
-    
-
+    return [antwort, antwortComp];   
 };
  
 // Funktion, die den Zug des Menschen nimmt.
@@ -81,34 +76,28 @@ ${chalk.italic.yellow('Wält bitte frei Platz in Feld zwiesen 1 und 9: ')}`));
     zeigtFeld(arrMitWählen,  zeichenVonMehsch);//Zeigt das aktuelle Spielfeld.
   
 }
-
+//Macht  array 
+function gewinnerkombinationMitWahlen(gewinnerkombination, arrMitWählen){
+    let arr=[];
+    for (let el of gewinnerkombination) {
+        let arrReihe=[]
+       
+        for (let i of el) {
+            arrReihe.push(arrMitWählen[i]);
+        }
+        arr.push(arrReihe)
+    }
+    
+    return arr;
+} 
 // Funktion, die den Zug des Computer nimmt.
 function nimmtRandomWahl( arrMitWählen, zeichenVonComputer, zeichenVonMehsch){
     let wahl=Math.floor(Math.random() * (9  + 1));
 
     while(arrMitWählen[wahl-1]!=' '){
-        wahl= Math.floor(Math.random() * (9  + 1));}
-
-        let gewinnerkombination=[
-
-            [0, 1, 2],[3, 4, 5], [6, 7, 8], 
-            [0, 3, 6],[1, 4, 7],[2, 5, 8], 
-            [0, 4, 8], [2, 4, 6]  
-        ];
-        
-        function gewinnerkombinationMitWahlen(gewinnerkombination, arrMitWählen){
-            let arr=[];
-            for (let el of gewinnerkombination) {
-                let arrReihe=[]
-               
-                for (let i of el) {
-                    arrReihe.push(arrMitWählen[i]);
-                }
-                arr.push(arrReihe)
-            }
-            
-            return arr;
-        } 
+        wahl= Math.floor(Math.random() * (9  + 1));}    
+         gewinnerkombinationMitWahlen(gewinnerkombination, arrMitWählen)
+          
         let richtigWahl=-1;
         let antwort=gewinnerkombinationMitWahlen(gewinnerkombination,arrMitWählen);
         
@@ -125,7 +114,6 @@ function nimmtRandomWahl( arrMitWählen, zeichenVonComputer, zeichenVonMehsch){
                     richtigWahl=reiheMitNUmmer[ant]+1
                     wahl=richtigWahl
                     break
-            
             }
        }}
        if(richtigWahl!=wahl){
@@ -145,18 +133,14 @@ function nimmtRandomWahl( arrMitWählen, zeichenVonComputer, zeichenVonMehsch){
     
     }}}}
 
-
      arrMitWählen[wahl-1]=zeichenVonComputer
     
      zeigtFeld(arrMitWählen, zeichenVonMehsch);//Zeigt das aktuelle Spielfeld.
      console.log(`
      
  ${chalk.magenta( `Ich habe das Kästchen ${wahl} gewält.`)}
-         `);
-     
-     
+         `);   
     }  
-
 
 // Funktion, die das aktuelle Spielfeld zeigt
 function zeigtFeld(arrMitWählen, zeichenVonMehsch) {
@@ -175,56 +159,40 @@ function zeigtFeld(arrMitWählen, zeichenVonMehsch) {
 } 
 
     console.log(strMitWählen);
-    console.log('_________________________________');
-    
+    console.log('_________________________________');   
 }
-
 
 
 // Prüft, ob es jemand gewonnen hat.
 function pruftSieg(arrMitWählen) {
- 
-    if(arrMitWählen[0]==arrMitWählen[1] && arrMitWählen[1]==arrMitWählen[2]&& arrMitWählen[0]!=' '){
-        
-            return [arrMitWählen[0], true];}// git  arr mit zeichen und true züruck
-    else if(arrMitWählen[0]==arrMitWählen[3] && arrMitWählen[3]==arrMitWählen[6]&& arrMitWählen[0]!=' '){
-        return [arrMitWählen[0], true];}
-    
-    else if(arrMitWählen[1]==arrMitWählen[4] && arrMitWählen[1]==arrMitWählen[7]&& arrMitWählen[1]!=' '){
-        return [arrMitWählen[1], true];}
-
-
-    else if(arrMitWählen[2]==arrMitWählen[5] && arrMitWählen[2]==arrMitWählen[8]&& arrMitWählen[2]!=' '){
-        return [arrMitWählen[2], true];}
-    
-    else if(arrMitWählen[3]==arrMitWählen[4] && arrMitWählen[4]==arrMitWählen[5]&& arrMitWählen[3]!=' '){
-        return [arrMitWählen[3], true];}
-    else if(arrMitWählen[6]==arrMitWählen[7] && arrMitWählen[7]==arrMitWählen[8]&& arrMitWählen[6]!=' '){
-        return [arrMitWählen[6], true];}
-
-    
-    else if(arrMitWählen[0]==arrMitWählen[4] && arrMitWählen[4]==arrMitWählen[8]&& arrMitWählen[0]!=' '){
-        return [arrMitWählen[0], true];}
-    else if(arrMitWählen[2]==arrMitWählen[4] && arrMitWählen[4]==arrMitWählen[6]&& arrMitWählen[2]!=' '){
-        return [arrMitWählen[2], true];}
-    else{
-        return ['', false];
+    let arr=gewinnerkombinationMitWahlen(gewinnerkombination, arrMitWählen)
+   
+    for(let reihe of arr){
+       if (reihe.every(el=>el=='X')){   
+            return['X', true]}
+           
+    else if  (reihe.every(el=>el=='0')){
+        return['0', true]}    
     }
+    return ['', false];}
 
-}
 // Funktion , die schreibt wer gewonnen hat
 function schreibtWerGewonnenHat(zeichen,zeichenVonMehsch) {
+
     console.log(zeichen==zeichenVonMehsch? `\n${ chalk.bgGreen('  Glückwunsch! Du hast gewonnen. ')}`:`   ${chalk.bgMagenta(' Juhu, ich habe gewonnen. ')}`);
+
 } 
 
+const gewinnerkombination=[
 
-
+    [0, 1, 2],[3, 4, 5], [6, 7, 8], 
+    [0, 3, 6],[1, 4, 7],[2, 5, 8], 
+    [0, 4, 8], [2, 4, 6]  
+    ];
 
 let weiterSpilen=true;
 
 while(weiterSpilen==true){
-   
- 
 
 const arrMitWählen=[' ',' ',' ',
                     ' ',' ',' ',
@@ -246,8 +214,6 @@ console.log(`Merkt bitte welches Kästchen welche Nummer hat:
         ${chalk.yellow( '---------------')}
         ${chalk.yellow( ' 7  |  8  |  9')}
 `);
-
-
 
 if(werErst){
     
